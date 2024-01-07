@@ -9,7 +9,7 @@
     "lintf": "eslint src --fix"
   },
   "keywords": [],
-  "author": "Marius K.",
+  "author": "Dovydas M.",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
