@@ -34,7 +34,7 @@ function sendLoginFetch(loginObj) {
       console.log('data ===', data);
       const emailObj = { email: loginObj.email };
 
-      if (data === 'isiloginai succ') {
+      if (data.msg === 'isiloginai succ') {
         loginLocalStorage(emailObj);
         window.location.href = '/public/shop.html';
       } else if (Array.isArray(data)) {
