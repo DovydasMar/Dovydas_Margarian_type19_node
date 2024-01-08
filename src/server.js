@@ -7,6 +7,7 @@ const testConnection = require('./routes/testconn');
 const registerRouter = require('./routes/registerRoute');
 const loginRouter = require('./routes/loginRoute');
 const shopItemRouter = require('./routes/shopItemsRoute');
+const orderRouter = require('./routes/orderRoutes');
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(cors());
 app.use('/api/auth', registerRouter);
 app.use('/api/auth', loginRouter);
 app.use('/api', shopItemRouter);
+app.use('/api', orderRouter);
 testConnection();
 
 app.get('/', (req, res) => {
