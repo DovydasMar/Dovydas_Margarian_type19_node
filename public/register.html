@@ -7,11 +7,22 @@
   <title>Document</title>
   <link rel="stylesheet" href="style/reset.css">
   <link rel="stylesheet" href="style/style.css">
-  <script src="/public/js/register.js" defer></script>
+  <script src="/public/js/register.js" type="module"></script>
 </head>
 
 <body>
-
+  <nav>
+  </nav>
+  <ul class="errors-list" id="errors-list"></ul>
+  <form>
+    <input type="text" name="userName" id="userName" placeholder="Jusu vardas">
+    <input type="text" name="email" id="email" placeholder="Email">
+    <input type="password" name="password" id="password" placeholder="password">
+    <select name="user" id="user">
+      <option selected disabled value="">select Role</option>
+    </select>
+    <button type="submit">Log in</button>
+  </form>
 </body>
 
 </html>

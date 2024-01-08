@@ -1,0 +1,25 @@
+body {
+  background-color: #e3e3e3;
+  padding: 20px;
+}
+
+.flex {
+  display: flex;
+  gap: 15px;
+}
+.grid {
+  display: grid;
+  gap: 15px;
+}
+.collum {
+  grid-template-columns: repeat(4, 1fr);
+}
+.between {
+  justify-content: space-between;
+}
+.center {
+  justify-content: center;
+}
+.container div.card {
+  width: 200px;
+}

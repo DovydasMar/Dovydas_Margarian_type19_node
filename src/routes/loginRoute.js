@@ -13,13 +13,13 @@ loginRouter.post('/login', checkLoginBody, async (req, res) => {
   console.log('error ===', error);
   // radom
   if (rows.length === 0) {
-    res.status(400).json(rows);
+    res.status(400).json([{ error: "username or password doesn't match" }]);
     return;
   }
   // ar sutampa slaptazodis?
   if (rows.length === 1) {
     if (password !== rows[0].password) {
-      res.status(400).json({ error: "username or password doesn't match" });
+      res.status(400).json([{ error: "username or password doesn't match" }]);
       return;
     }
     // Pass match // if sutampa === succ

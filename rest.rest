@@ -8,9 +8,10 @@ POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {
-    "userName": "vartotojas6",
-    "email": "vartotojas6@metal.com",
-    "password": "secret6"
+    "userName": "vartotojas7",
+    "email": "vartotojas7@metal.com",
+    "password": "secret7",
+    "roleId": "2"
 }
 ### Login route
 POST  http://localhost:3000/api/auth/login

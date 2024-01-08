@@ -21,7 +21,7 @@ shopItemRouter.post('/shop_items', checkItemBody, async (req, res) => {
 });
 
 shopItemRouter.get('/shop_items', async (req, res) => {
-  const sql = 'SELECT * FROM shopitems';
+  const sql = 'SELECT * FROM shopitems Where isDeleted = 0';
   const [shopItemObj, error] = await dbQueryWithData(sql);
   if (error) {
     res.status(500).json({

@@ -41,7 +41,8 @@ async function checkRegBody(req, res, next) {
       minDomainSegments: 2,
       tlds: { allow: ['com', 'net'] },
     }),
-    password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{5,30}$')),
+    password: Joi.string().min(3),
+    roleId: Joi.number().required(),
   });
   // testuojam ar attitinka objektas musu schema
   try {

@@ -7,11 +7,35 @@
   <title>Document</title>
   <link rel="stylesheet" href="style/reset.css">
   <link rel="stylesheet" href="style/style.css">
-  <script src="/public/js/shop.js" defer></script>
+  <script src="/public/js/shop.js" type="module"></script>
 </head>
 
 <body>
-
+  <header class="flex between">
+    <a href="shop.html">
+      <h1>eShop'as</h1>
+    </a>
+    <ul class="unlisted flex">
+      <li class=""><a href="login.html">Log it</a></li>
+      <li><a href="register.html">Register</a></li>
+    </ul>
+  </header>
+  <nav>
+    <ul class="unlisted flex center">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+  </nav>
+  <main id="container" class="container collum grid">
+    <div class="card">
+      <img src="" alt="">
+      <h1>Name</h1>
+      <p>description</p>
+      <p>price</p>
+      <button>add to cart</button>
+    </div>
+  </main>
 </body>
 
 </html>

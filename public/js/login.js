@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 console.log('login.js file was loaded');
-const url = 'http://localhost:3000/api/auth/login';
+const loginUrl = 'http://localhost:3000/api/auth/login';
 const roleUrl = 'http://localhost:3000/api/user_roles';
 const els = {
   form: document.forms[0],
@@ -21,7 +21,7 @@ els.form.addEventListener('submit', (e) => {
 });
 
 function sendLoginFetch(loginObj) {
-  fetch(url, {
+  fetch(loginUrl, {
     method: 'POST',
     headers: { 'Content-type': 'application/json' },
     body: JSON.stringify(loginObj),
@@ -36,12 +36,10 @@ function sendLoginFetch(loginObj) {
 
       if (data.msg === 'isiloginai succ') {
         loginLocalStorage(emailObj);
-        window.location.href = '/public/shop.html';
-      } else if (Array.isArray(data)) {
+      }
+      if (Array.isArray(data)) {
         console.log('klaida');
         setErrors(data);
-      } else {
-        setError(data);
       }
     })
     .catch((error) => {
@@ -61,15 +59,15 @@ function loginLocalStorage(email) {
     .then((data) => {
       console.log('email obj ===', data);
       const { email: userEmail, roleId } = data[0];
-      // localStorage.setItem('email', userEmail);
-      // localStorage.setItem('roleId', roleId);
-      // localStorage.setItem(
-      //   'user',
-      //   JSON.stringify({ email: userEmail, roleID: roleId })
-      // );
+      localStorage.setItem(userEmail, roleId);
+      window.location.href = '/public/shop.html';
     })
     .catch((error) => {
-      console.warn('ivyko klaida:', error);
+      console.log(error);
+      els.errorList.innerHTML = '';
+      const liEl = document.createElement('li');
+      liEl.textContent = "username or password doesn't match";
+      els.errorList.append(liEl);
     });
 }
 function setErrors(arr) {
@@ -79,10 +77,4 @@ function setErrors(arr) {
     liEl.textContent = errObj.error;
     els.errorList.append(liEl);
   });
-}
-function setError(errObj) {
-  els.errorList.innerHTML = '';
-  const liEl = document.createElement('li');
-  liEl.textContent = errObj.error;
-  els.errorList.append(liEl);
 }
