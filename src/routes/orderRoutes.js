@@ -1,9 +1,10 @@
 const express = require('express');
 const { dbQueryWithData } = require('../helper');
+const { checkOrderBody } = require('../middleware');
 
 const orderRouter = express.Router();
 
-orderRouter.post('/orders', async (req, res) => {
+orderRouter.post('/orders', checkOrderBody, async (req, res) => {
   const { userId, shopItemId, quantity, totalPrice, status } = req.body;
   const argArr = [userId, shopItemId, quantity, totalPrice, status];
   const postSql = `INSERT INTO orders (userId, shopItemId, quantity, totalPrice, status)

@@ -1,5 +1,6 @@
 const express = require('express');
 const { dbQueryWithData } = require('../helper');
+// const checkRegBody = require('../middleware');
 
 const registerRouter = express.Router();
 

@@ -8,9 +8,9 @@ POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {
-    "userName": "vartotojas3",
-    "email": "vartotojas3@metal.com",
-    "password": "secret3"
+    "userName": "vartotojas6",
+    "email": "vartotojas6@metal.com",
+    "password": "secret6"
 }
 ### Login route
 POST  http://localhost:3000/api/auth/login
@@ -51,10 +51,10 @@ POST  http://localhost:3000/api/orders
 Content-Type: application/json
 
 {
-  "userId":"10", 
-  "shopItemId":"3", 
-  "quantity":"2", 
-  "totalPrice":"5.98", 
+  "userId":5, 
+  "shopItemId":2, 
+  "quantity":3, 
+  "totalPrice":"8.97", 
   "status":"ready to deliver"
 }
 
@@ -64,3 +64,9 @@ GET  http://localhost:3000/api/orders
 GET  http://localhost:3000/api/orders/23
 ### Get OREDERs
 GET  http://localhost:3000/api/orders/user/5
+
+### /Orders ****
+### ROLES ****
+### Get ROLES
+GET  http://localhost:3000/api/user_roles
+### /ROLES ****

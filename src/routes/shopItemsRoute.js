@@ -1,13 +1,13 @@
 const express = require('express');
 const { dbQueryWithData } = require('../helper');
+const { checkItemBody } = require('../middleware');
 
 const shopItemRouter = express.Router();
 
-shopItemRouter.post('/shop_items', async (req, res) => {
-  const sql = 'INSERT INTO shopitems (name, price, description, image, itemTypeId) VALUES ( ?, ?, ?, ?, ?)';
-  const {
-    name, price, description, image, itemTypeId,
-  } = req.body;
+shopItemRouter.post('/shop_items', checkItemBody, async (req, res) => {
+  const sql =
+    'INSERT INTO shopitems (name, price, description, image, itemTypeId) VALUES ( ?, ?, ?, ?, ?)';
+  const { name, price, description, image, itemTypeId } = req.body;
   const argarr = [name, price, description, image, itemTypeId];
   const [shopItemObj, error] = await dbQueryWithData(sql, argarr);
   if (error) {
