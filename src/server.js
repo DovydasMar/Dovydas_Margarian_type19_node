@@ -3,7 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 
-const testConnection = require('./routes/testconn');
+const testConnection = require('./testconn');
 const registerRouter = require('./routes/registerRoute');
 const loginRouter = require('./routes/loginRoute');
 const shopItemRouter = require('./routes/shopItemsRoute');

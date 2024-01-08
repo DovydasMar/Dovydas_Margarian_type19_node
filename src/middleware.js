@@ -1,16 +1,41 @@
 const Joi = require('joi');
 
 function formatErroArr(errorsObj) {
-  return errorsObj;
-  // return errorsObj.details.map((erObj) => ({
-  //   field: erObj.path[0],
-  //   error: erObj.message,
-  // }));
+  // return errorsObj;
+  return errorsObj.details.map((erObj) => ({
+    field: erObj.path[0],
+    error: erObj.message,
+  }));
+}
+
+async function checkLoginBody(req, res, next) {
+  // aprasom koks bus musu objektas
+  const regSchema = Joi.object({
+    email: Joi.string().email({
+      minDomainSegments: 2,
+      tlds: { allow: ['com', 'net'] },
+    }),
+    password: Joi.string().required(),
+  });
+  // testuojam ar attitinka objektas musu schema
+  try {
+    const validatonResult = await regSchema.validateAsync(req.body, {
+      // rodyti visas klaidas
+      abortEarly: false,
+    });
+    console.log('validatonResult ===', validatonResult);
+    next();
+  } catch (error) {
+    console.log('error checkRegBodyy ===', error);
+    // parasyti funkcija errorDetails(error)
+    // grazina masyva kuriame yra objektas { field: name, err: "required field"}
+    res.status(400).json(formatErroArr(error));
+  }
 }
 
 async function checkRegBody(req, res, next) {
   // aprasom koks bus musu objektas
-  const regSchema = Joi.object({
+  const logSchema = Joi.object({
     userName: Joi.string().alphanum().min(3).max(30).required(),
     email: Joi.string().email({
       minDomainSegments: 2,
@@ -20,7 +45,7 @@ async function checkRegBody(req, res, next) {
   });
   // testuojam ar attitinka objektas musu schema
   try {
-    const validatonResult = await regSchema.validateAsync(req.body, {
+    const validatonResult = await logSchema.validateAsync(req.body, {
       // rodyti visas klaidas
       abortEarly: false,
     });
@@ -81,4 +106,9 @@ async function checkOrderBody(req, res, next) {
     res.status(400).json(formatErroArr(error));
   }
 }
-module.exports = { checkRegBody, checkItemBody, checkOrderBody };
+module.exports = {
+  checkRegBody,
+  checkItemBody,
+  checkOrderBody,
+  checkLoginBody,
+};

@@ -17,7 +17,7 @@ POST  http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-    "userName": "vartotojas1",
+    "email": "vartotojas1@me",
     "password": "secret1"
 }
 ### /AUTHENTICATION****
@@ -69,4 +69,12 @@ GET  http://localhost:3000/api/orders/user/5
 ### ROLES ****
 ### Get ROLES
 GET  http://localhost:3000/api/user_roles
+### Get one role, by id ROLES
+POST http://localhost:3000/api/user_roles
+Content-Type: application/json
+
+{
+  "email": "vartotojas2@metal.com" 
+}
 ### /ROLES ****
+
