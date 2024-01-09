@@ -50,7 +50,7 @@ function sendRegFetch(regObj) {
     })
     .then((data) => {
       if (data === 'user created') {
-        window.location.href = '/public/shop.html';
+        window.location.href = '/public/login.html';
       }
       setErrors(data);
     })
