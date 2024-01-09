@@ -1,6 +1,12 @@
+/* eslint-disable no-undef */
 import { getDataFetch } from './modules/helper.js';
 
 const itemUrl = 'http://localhost:3000/api/shop_items';
+const delUrl = 'http://localhost:3000/api/shop_items';
+const orderUrl = 'http://localhost:3000/api/orders';
+const userEmail = localStorage.getItem('email');
+const userRole = localStorage.getItem('roleId');
+console.log('userRole ===', userRole);
 const els = {
   cardContainer: document.getElementById('container'),
 };
@@ -20,17 +26,40 @@ function renderCards(arr) {
     els.cardContainer.append(cardEl);
   });
 }
-els.cardContainer.append(divElArr);
 
-function deleteItem() {
-  console.log('Item deleted');
+function deleteItem(e) {
+  const btn = e.target;
+  const cardEl = btn.parentElement;
+  console.log('cardEl ===', cardEl);
+  const idToUse = cardEl.dataset.id;
+  console.log('idToUse ===', idToUse);
+  console.log('item deleted');
+  fetch(`${delUrl}/${idToUse}`, {
+    method: 'DELETE',
+  })
+    .then((resp) => {
+      console.log('resp ===', resp);
+      if (resp.status === 200) {
+        console.log('istrinta sekmingai');
+        cardEl.remove();
+      }
+    })
+    .catch((error) => {
+      console.warn('ivyko klaida:', error);
+    });
 }
-function buyItem() {
+function buyItem(e) {
+  const btn = e.target;
+  const cardEl = btn.parentElement;
+  console.log('cardEl ===', cardEl);
+  const idToUse = cardEl.dataset.id;
+  console.log('idToUse ===', idToUse);
   console.log('item added to cart');
 }
 function makeOneCard(itemObj) {
   const divEl = document.createElement('div');
   divEl.classList.add('card');
+  divEl.dataset.id = itemObj.id;
   const imgEl = document.createElement('img');
   imgEl.src = itemObj.image;
   imgEl.alt = itemObj.name;
@@ -47,6 +76,9 @@ function makeOneCard(itemObj) {
   divEl.append(imgEl, h1El, pEl, priceEl, buttonEl, buttonDelEl);
   buttonEl.addEventListener('click', buyItem);
   buttonDelEl.addEventListener('click', deleteItem);
-
+  console.log('userRole ===', userRole);
+  if (userRole !== '1') {
+    buttonDelEl.remove();
+  }
   return divEl;
 }

@@ -59,7 +59,8 @@ function loginLocalStorage(email) {
     .then((data) => {
       console.log('email obj ===', data);
       const { email: userEmail, roleId } = data[0];
-      localStorage.setItem(userEmail, roleId);
+      localStorage.setItem('email', userEmail);
+      localStorage.setItem('roleId', roleId);
       window.location.href = '/public/shop.html';
     })
     .catch((error) => {
