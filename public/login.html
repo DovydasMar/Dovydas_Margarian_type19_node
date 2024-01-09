@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Document</title>
+  <link rel="stylesheet" href="style/reset.css">
+  <link rel="stylesheet" href="style/style.css">
+  <script src="/public/js/login.js" defer></script>
+</head>
+
+<body>
+  <header class="flex between">
+    <a class="flex" href="shop.html">
+      <h1>eShop'as</h1>
+    </a>
+    <ul id="auth" class="unlisted flex">
+      <li class=""><button id="log">log out</button></li>
+    </ul>
+  </header>
+  <nav>
+    <ul class="unlisted flex center">
+      <li><a class="btn" href="shop.html">Home Page</a></li>
+      <li id="adminAdd"><a class="btn" href="add_item.html">Add Item</a></li>
+      <li><a class="btn" href="orders.html">orders</a></li>
+    </ul>
+  </nav>
+
+
+  <ul class="errors-list" id="errors-list"></ul>
+  <form>
+    <input type="text" name="email" id="email" placeholder="Email">
+    <input type="password" name="password" id="password" placeholder="Password">
+    <button type="submit">Log in</button>
+  </form>
+</body>
+
+</html>

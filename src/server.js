@@ -2,9 +2,14 @@ require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
-const mysql = require('mysql2/promise');
-const { dbConfig } = require('./config');
-const { dbQueryWithData } = require('./helper');
+
+const testConnection = require('./testconn');
+const registerRouter = require('./routes/registerRoute');
+const loginRouter = require('./routes/loginRoute');
+const shopItemRouter = require('./routes/shopItemsRoute');
+const orderRouter = require('./routes/orderRoutes');
+const roleRouter = require('./routes/rolesRoute');
+const userRouter = require('./routes/userRoutes');
 
 const app = express();
 
@@ -14,20 +19,13 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(cors());
-// eslint-disable-next-line no-use-before-define
-// testConnection();
-async function testConnection() {
-  let conn;
-  try {
-    conn = await mysql.createConnection(dbConfig);
-    await conn.query('SELECT * FROM posts LIMIT 1');
-    console.log('succ connected to mySQL');
-  } catch (error) {
-    console.log('testConnection failed, did you start XAMPP???');
-  } finally {
-    if (conn) conn.end();
-  }
-}
+app.use('/api/auth', registerRouter);
+app.use('/api/auth', loginRouter);
+app.use('/api', shopItemRouter);
+app.use('/api', orderRouter);
+app.use('/api', roleRouter);
+app.use('/api', userRouter);
+testConnection();
 
 app.get('/', (req, res) => {
   res.json('Hello World');

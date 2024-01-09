@@ -1,3 +1,91 @@
-GET http://localhost:3000
+### base url
+GET http://localhost:3000/api/
 
-###
+### AUTHENTICATION****
+
+### Register Route
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+    "userName": "vartotojas7",
+    "email": "vartotojas7@metal.com",
+    "password": "secret7",
+    "roleId": "2"
+}
+### Login route
+POST  http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "vartotojas1@me",
+    "password": "secret1"
+}
+### /AUTHENTICATION****
+
+### SHOP ITEMS****
+### create new item
+POST http://localhost:3000/api/shop_items
+Content-Type: application/json
+
+{
+   "name": "Sprite",
+   "price":"2.99", 
+   "description":"gaivusis gerimas", 
+   "image":"https://rimibaltic-res.cloudinary.com/image/upload/b_white,c_fit,f_auto,h_480,q_auto,w_480/d_ecommerce:backend-fallback.png/MAT_1367096_PCE_LT",
+   "itemTypeId":"1"
+}
+### Gauti visus Shop ITEMS
+GET http://localhost:3000/api/shop_items
+
+### Gauti VIENA Shop ITEMA
+GET http://localhost:3000/api/shop_items/2
+
+### DELETE VIENA Shop ITEMA
+DELETE  http://localhost:3000/api/shop_items/1
+
+### /SHOP ITEMS****
+### Orders ****
+
+### POST OREDER
+POST  http://localhost:3000/api/orders
+Content-Type: application/json
+
+{
+  "userId":5, 
+  "shopItemId":2, 
+  "quantity":3, 
+  "totalPrice":"8.97", 
+  "status":"ready to deliver"
+}
+
+### Get OREDERs
+GET  http://localhost:3000/api/orders
+### Get OREDERs
+GET  http://localhost:3000/api/orders/23
+### Get OREDERs
+GET  http://localhost:3000/api/orders/user/5
+
+### /Orders ****
+### ROLES ****
+### Get item Type id
+GET  http://localhost:3000/api/item_types
+### Get ROLES
+GET  http://localhost:3000/api/user_roles
+### Get one role, by id ROLES
+POST http://localhost:3000/api/user_roles
+Content-Type: application/json
+
+{
+  "email": "vartotojas2@metal.com" 
+}
+### /ROLES ****
+### get users
+GET  http://localhost:3000/api/users
+### get users by email
+POST  http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+  "email": "admin@dev.com"
+}

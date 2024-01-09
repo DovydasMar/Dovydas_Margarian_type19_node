@@ -6,7 +6,7 @@ async function dbQueryWithData(sql, argArr = []) {
   try {
     conn = await mysql.createConnection(dbConfig);
     const [rows] = await conn.query(sql, argArr);
-    console.log('rows ===', rows);
+    // console.log('rows ===', rows);
     return [rows, null];
   } catch (error) {
     return [null, error];
