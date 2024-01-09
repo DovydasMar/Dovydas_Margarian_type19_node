@@ -15,7 +15,7 @@
 
 <body>
   <header class="flex between">
-    <a href="shop.html">
+    <a class="flex" href="shop.html">
       <h1>eShop'as</h1>
     </a>
     <ul id="auth" class="unlisted flex">
@@ -24,14 +24,14 @@
   </header>
   <nav>
     <ul class="unlisted flex center">
-      <li><a href="shop.html">Home Page</a></li>
-      <li id="adminAdd"><a href="add_item.html">Add Item</a></li>
-      <li><a href="orders.html">orders</a></li>
+      <li><a class="btn" href="shop.html">Home Page</a></li>
+      <li id="adminAdd"><a class="btn" href="add_item.html">Add Item</a></li>
+      <li><a class="btn" href="orders.html">orders</a></li>
     </ul>
   </nav>
   <ul class="errors-list" id="errors-list"></ul>
   <form>
-    <input type="text" name="userName" id="userName" placeholder="Jusu vardas">
+    <input type="text" name="userName" id="userName" placeholder="Name">
     <input type="text" name="email" id="email" placeholder="Email">
     <input type="password" name="password" id="password" placeholder="password">
     <select name="roleId" id="roleId">

@@ -17,13 +17,13 @@ const els = {
 };
 if (!userRole) {
   els.authentication.innerHTML = `
-  <li class=""><a href="login.html">Log it</a></li>
+  <li class=""><a href="login.html">Log in</a></li>
   <li><a href="register.html">Register</a></li>`;
 }
 if (userRole !== 1) {
   window.location.href = '/public/shop.html';
 }
-console.log('els ===', els);
+
 getTypeId();
 
 async function getTypeId() {
@@ -31,10 +31,9 @@ async function getTypeId() {
     'http://localhost:3000/api/item_types'
   );
   if (error) {
-    console.log('error ===', error);
     return;
   }
-  console.log('data ===', data);
+
   data.forEach((itemObj) => {
     const option = document.createElement('option');
     option.value = itemObj.typesId;
@@ -60,11 +59,9 @@ function sendAddItemFetch(itemObj) {
     body: JSON.stringify(itemObj),
   })
     .then((resp) => {
-      console.log('resp ===', resp);
       return resp.json();
     })
     .then((data) => {
-      console.log('data ===', data);
       if (data === 'created') {
         window.location.href = '/public/shop.html';
       }
@@ -76,6 +73,11 @@ function sendAddItemFetch(itemObj) {
 }
 function setErrors(arr) {
   els.errorList.innerHTML = '';
+  els.name.classList.remove('error');
+  els.price.classList.remove('error');
+  els.description.classList.remove('error');
+  els.image.classList.remove('error');
+  els.select.classList.remove('error');
   arr.forEach((errObj) => {
     document.getElementById(errObj.field).classList.add('error');
     const liEl = document.createElement('li');
@@ -84,7 +86,6 @@ function setErrors(arr) {
   });
 }
 if (userRole !== 1) {
-  console.log('userRole ===', userRole);
   els.addItem.remove();
 }
 els.logout.addEventListener('click', () => {

@@ -18,8 +18,8 @@ const els = {
 
 if (!userRole) {
   els.authentication.innerHTML = `
-    <li class=""><a href="login.html">Log it</a></li>
-    <li><a href="register.html">Register</a></li>`;
+  <li class=""><a href="login.html">Log in</a></li>
+  <li><a href="register.html">Register</a></li>`;
 }
 
 const userioEmailas = { email: userEmail };
@@ -76,14 +76,13 @@ function renderTable(data) {
 
 els.select.addEventListener('change', () => {
   const userId = els.select.value;
-  console.log('userId ===', userId);
+
   getSingleOrders(userId);
 });
 
 async function getOrders() {
   const [data, error] = await getDataFetch(orderUrl);
   if (error) {
-    console.log('error ===', error);
     return;
   }
   renderTable(data);
@@ -92,7 +91,6 @@ async function getOrders() {
 async function getSingleOrders(id) {
   const [data, error] = await getDataFetch(`${orderUrl}/user/${id}`);
   if (error) {
-    console.log('error ===', error);
     return;
   }
   renderTable(data);
@@ -105,7 +103,6 @@ if (userRole !== 1) {
 async function getUsers() {
   const [data, error] = await getDataFetch(userUrl);
   if (error) {
-    console.log('error ===', error);
     return;
   }
   data.forEach((userObj) => {
@@ -124,8 +121,6 @@ function getUsersId(email) {
   })
     .then((resp) => resp.json())
     .then((data) => {
-      console.log('data ===', data);
-      console.log('data[0] ===', data[0].userId);
       getSingleOrders(data[0].userId);
     })
     .catch((error) => {

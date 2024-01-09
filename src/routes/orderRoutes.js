@@ -23,7 +23,8 @@ orderRouter.get('/orders', async (req, res) => {
   const sql = `SELECT orders.orderId, orders.status, users.userName, shopitems.name, shopitems.price, orders.quantity, orders.totalPrice
   FROM orders 
   JOIN users ON users.userId = orders.userId 
-  JOIN shopitems on shopitems.id = orders.shopItemId`;
+  JOIN shopitems on shopitems.id = orders.shopItemId
+  order by users.userName asc`;
   const [orderObj, error] = await dbQueryWithData(sql);
   if (error) {
     res.status(500).json({ msg: 'the server encountered a problem' });

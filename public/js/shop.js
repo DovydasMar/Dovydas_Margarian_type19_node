@@ -7,7 +7,7 @@ const orderUrl = 'http://localhost:3000/api/orders';
 const userUrl = 'http://localhost:3000/api/users';
 const userEmail = localStorage.getItem('email');
 const userRole = +localStorage.getItem('roleId');
-console.log('userRole ===', userRole);
+
 const els = {
   cardContainer: document.getElementById('container'),
   addItem: document.getElementById('adminAdd'),
@@ -16,20 +16,19 @@ const els = {
 };
 if (!userRole) {
   els.authentication.innerHTML = `
-  <li class=""><a href="login.html">Log it</a></li>
+  <li class=""><a href="login.html">Log in</a></li>
   <li><a href="register.html">Register</a></li>`;
 }
-console.log('els ===', els);
+
 const [itemArr, error] = await getDataFetch(itemUrl);
 const userioEmailas = { email: userEmail };
 let userioId = '';
 getUsersId(userioEmailas);
 
 if (error) {
-  console.log(error);
+  // console.log(error);
 }
 if (Array.isArray(itemArr)) {
-  console.log('itemArr ===', itemArr);
   renderCards(itemArr);
 }
 function renderCards(arr) {
@@ -42,17 +41,14 @@ function renderCards(arr) {
 function deleteItem(e) {
   const btn = e.target;
   const cardEl = btn.parentElement;
-  console.log('cardEl ===', cardEl);
+
   const idToUse = cardEl.dataset.id;
-  console.log('idToUse ===', idToUse);
-  console.log('item deleted');
+
   fetch(`${delUrl}/${idToUse}`, {
     method: 'DELETE',
   })
     .then((resp) => {
-      console.log('resp ===', resp);
       if (resp.status === 200) {
-        console.log('istrinta sekmingai');
         cardEl.remove();
       }
     })
@@ -67,7 +63,7 @@ function buyItem(e) {
   const selectValue = cardEl.querySelector('input').value;
   const price = cardEl.querySelector('#price').textContent;
   const totalRice = selectValue * price;
-  console.log('totalPrice ===', totalRice);
+
   const bodyToOrder = {
     userId: Number(userioId),
     shopItemId: itemId,
@@ -75,33 +71,40 @@ function buyItem(e) {
     totalPrice: totalRice,
     status: 'Order Placed',
   };
-  console.log('bodyToOrder ===', bodyToOrder);
+
   addToCart(bodyToOrder);
 }
 function makeOneCard(itemObj) {
   const divEl = document.createElement('div');
   divEl.classList.add('card');
   divEl.dataset.id = itemObj.id;
+  const divoEl = document.createElement('div');
+  divoEl.classList.add('img-container');
   const imgEl = document.createElement('img');
   imgEl.src = itemObj.image;
   imgEl.alt = itemObj.name;
-  const h1El = document.createElement('h1');
+  const h1El = document.createElement('h2');
   h1El.textContent = itemObj.name;
-  const pEl = document.createElement('p');
+  const pEl = document.createElement('h4');
   pEl.textContent = itemObj.description;
   const priceEl = document.createElement('p');
   priceEl.id = 'price';
   priceEl.textContent = itemObj.price;
   const buttonEl = document.createElement('button');
+  buttonEl.classList.add('btn');
   buttonEl.textContent = 'Buy this product';
   const quantitySelect = document.createElement('input');
   quantitySelect.type = 'number';
   quantitySelect.step = '1';
+  quantitySelect.min = '1';
   quantitySelect.value = '1';
   const buttonDelEl = document.createElement('button');
   buttonDelEl.textContent = 'Delete item';
+  buttonDelEl.classList.add('btn');
+  buttonDelEl.classList.add('danger');
+  divoEl.append(imgEl);
   divEl.append(
-    imgEl,
+    divoEl,
     h1El,
     pEl,
     priceEl,
@@ -111,7 +114,7 @@ function makeOneCard(itemObj) {
   );
   buttonEl.addEventListener('click', buyItem);
   buttonDelEl.addEventListener('click', deleteItem);
-  console.log('userRole ===', userRole);
+
   if (userRole !== 1) {
     buttonDelEl.remove();
   }
@@ -119,7 +122,6 @@ function makeOneCard(itemObj) {
 }
 
 if (userRole !== 1) {
-  console.log('userRole ===', userRole);
   els.addItem.remove();
 }
 
@@ -151,8 +153,6 @@ function getUsersId(email) {
   })
     .then((resp) => resp.json())
     .then((data) => {
-      console.log('data ===', data);
-      console.log('data[0] ===', data[0].userId);
       userioId = data[0].userId;
     })
     .catch((error) => {

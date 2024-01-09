@@ -15,7 +15,7 @@
 
 <body>
   <header class="flex between">
-    <a href="shop.html">
+    <a class="flex" href="shop.html">
       <h1>eShop'as</h1>
     </a>
     <ul id="auth" class="unlisted flex">
@@ -24,17 +24,17 @@
   </header>
   <nav>
     <ul class="unlisted flex center">
-      <li><a href="shop.html">Home Page</a></li>
-      <li id="adminAdd"><a href="add_item.html">Add Item</a></li>
-      <li><a href="orders.html">orders</a></li>
+      <li><a class="btn" href="shop.html">Home Page</a></li>
+      <li id="adminAdd"><a class="btn" href="add_item.html">Add Item</a></li>
+      <li><a class="btn" href="orders.html">orders</a></li>
     </ul>
   </nav>
-  <ul class="errors-list" id="errors-list"></ul>
-  <form>
+  <ul class="errors-list unlisted" id="errors-list"></ul>
+  <form class="flex wrap">
     <input type="text" name="name" id="name" placeholder="item name">
     <input type="number" name="price" id="price" placeholder="price" step="0.01">
     <input type="text" name="description" id="description" placeholder="description">
-    <textarea name="image" id="image" cols="30" rows="10"></textarea>
+    <textarea name="image" id="image" cols="30" rows="1" placeholder="Image Url"></textarea>
     <select name="itemTypeId" id="itemTypeId">
       <option selected disabled value="">please select item type</option>
     </select>

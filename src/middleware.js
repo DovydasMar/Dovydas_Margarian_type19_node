@@ -27,8 +27,6 @@ async function checkLoginBody(req, res, next) {
     next();
   } catch (error) {
     console.log('error checkRegBodyy ===', error);
-    // parasyti funkcija errorDetails(error)
-    // grazina masyva kuriame yra objektas { field: name, err: "required field"}
     res.status(400).json(formatErroArr(error));
   }
 }
@@ -62,7 +60,7 @@ async function checkRegBody(req, res, next) {
 async function checkItemBody(req, res, next) {
   // aprasom koks bus musu objektas
   const itemSchema = Joi.object({
-    name: Joi.string().alphanum().min(3).max(30).required(),
+    name: Joi.string().min(3).max(30).required(),
     price: Joi.number().required(),
     description: Joi.string().min(5).required(),
     image: Joi.string(),

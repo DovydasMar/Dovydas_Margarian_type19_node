@@ -1,7 +1,6 @@
 /* eslint-disable no-use-before-define */
 import { getDataFetch } from './modules/helper.js';
 
-console.log('register.js file was loaded');
 const regUrl = 'http://localhost:3000/api/auth/register';
 const userEmail = localStorage.getItem('email');
 const userRole = +localStorage.getItem('roleId');
@@ -16,16 +15,15 @@ const els = {
   authentication: document.getElementById('auth'),
   logout: document.getElementById('log'),
 };
-console.log('els ===', els);
+
 if (userRole) {
   window.location.href = '/public/shop.html';
 }
 if (!userRole) {
   els.authentication.innerHTML = `
-  <li class=""><a href="login.html">Log it</a></li>
+  <li class=""><a href="login.html">Log in</a></li>
   <li><a href="register.html">Register</a></li>`;
 }
-console.log('els ===', els);
 
 getRoleId('http://localhost:3000/api/user_roles');
 
@@ -38,7 +36,7 @@ els.form.addEventListener('submit', (e) => {
     password: els.password.value,
     roleId: els.select.value,
   };
-  console.log('regInput ===', regInput);
+
   sendRegFetch(regInput);
 });
 function sendRegFetch(regObj) {
@@ -48,11 +46,9 @@ function sendRegFetch(regObj) {
     body: JSON.stringify(regObj),
   })
     .then((resp) => {
-      console.log('resp ===', resp);
       return resp.json();
     })
     .then((data) => {
-      console.log('data ===', data);
       if (data === 'user created') {
         window.location.href = '/public/shop.html';
       }
@@ -67,10 +63,9 @@ async function getRoleId() {
     'http://localhost:3000/api/user_roles'
   );
   if (error) {
-    console.log('error ===', error);
     return;
   }
-  console.log('data ===', data);
+
   // loop over data
   data.forEach((userObj) => {
     const option = document.createElement('option');
@@ -92,7 +87,6 @@ function setErrors(arr) {
   });
 }
 if (userRole !== 1) {
-  console.log('userRole ===', userRole);
   els.addItem.remove();
 }
 els.logout.addEventListener('click', () => {
