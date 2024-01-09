@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 09, 2024 at 03:13 PM
+-- Generation Time: Jan 09, 2024 at 04:04 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -70,25 +70,10 @@ INSERT INTO `orders` (`orderId`, `userId`, `shopItemId`, `quantity`, `totalPrice
 (25, 5, 2, 3, 8.97, 'ready to deliver'),
 (26, 1, 1, 2, 5.98, 'Order Placed'),
 (27, 2, 1, 3, 8.97, 'Order Placed'),
-(28, 0, 2, 1, 2.99, 'Order Placed'),
-(29, 0, 2, 1, 2.99, 'Order Placed'),
-(30, 0, 2, 1, 2.99, 'Order Placed'),
-(31, 0, 2, 1, 2.99, 'Order Placed'),
-(32, 0, 2, 1, 2.99, 'Order Placed'),
-(33, 0, 2, 1, 2.99, 'Order Placed'),
-(34, 0, 2, 1, 2.99, 'Order Placed'),
-(35, 0, 2, 1, 2.99, 'Order Placed'),
-(36, 0, 2, 1, 2.99, 'Order Placed'),
-(37, 0, 2, 1, 2.99, 'Order Placed'),
-(38, 0, 2, 1, 2.99, 'Order Placed'),
-(39, 0, 2, 1, 2.99, 'Order Placed'),
-(40, 0, 2, 1, 2.99, 'Order Placed'),
-(41, 0, 2, 1, 2.99, 'Order Placed'),
-(42, 0, 2, 1, 2.99, 'Order Placed'),
-(43, 0, 2, 1, 2.99, 'Order Placed'),
-(44, 0, 2, 1, 2.99, 'Order Placed'),
-(45, 0, 2, 1, 2.99, 'Order Placed'),
-(46, 0, 2, 1, 2.99, 'Order Placed');
+(48, 1, 2, 1, 2.99, 'Order Placed'),
+(49, 1, 2, 1, 2.99, 'Order Placed'),
+(50, 1, 11, 1, 1.96, 'Order Placed'),
+(51, 10, 14, 1, 0.01, 'Order Placed');
 
 -- --------------------------------------------------------
 
@@ -121,7 +106,8 @@ INSERT INTO `shopitems` (`id`, `name`, `price`, `description`, `image`, `itemTyp
 (10, 'test', 11.00, 'kazkas atsitiko', '123213213', 2, 1),
 (11, 'Hot Dog', 1.96, 'A nice steaming hot dog', 'https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcQswQI5UwdtTnEoxqSMZWqa_fon9r60coOYMczmKwFI2xX4IVK2ieclMOiC3Rx1PA0i', 2, 0),
 (12, 'Nokia 3310', 999.00, 'the new legend returns nokia 3310', 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Nokia_3310_Blue_R7309170_%28retouch%29.jpg/150px-Nokia_3310_Blue_R7309170_%28retouch%29.jpg', 3, 0),
-(13, 'nice gnome', 13.99, 'a nice troll to look after your garden', 'https://www.varle.lt/static/uploads/products/1527/gar/garden-gnome-height-21-cm_VaELmv4.jpg', 4, 0);
+(13, 'nice gnome', 13.99, 'a nice troll to look after your garden', 'https://www.varle.lt/static/uploads/products/1527/gar/garden-gnome-height-21-cm_VaELmv4.jpg', 4, 0),
+(14, '10 is egzamino', 0.01, 'Labai reikia gero pazymio, kad morale atsistatytu', 'https://cdn.pixabay.com/photo/2012/04/23/15/09/number-38422_640.png', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -168,11 +154,7 @@ INSERT INTO `users` (`userId`, `userName`, `email`, `password`, `roleId`) VALUES
 (4, 'vartotojas3', 'vartotojas3@metal.com', 'secret3', 2),
 (5, 'vartotojas4', 'vartotojas4@metal.com', 'secret4', 2),
 (6, 'vartotojas6', 'vartotojas6@metal.com', 'secret6', 2),
-(7, 'Dovydas', 'dovydas@metal.com', '123456789A', 2),
-(8, 'Dovydas', 'dovydas@dev.com', '12345', 2),
-(9, 'vartotojas7', 'vartotojas7@metal.com', 'secret7', 2),
-(10, 'Dovydas', 'admin1@dev.com', '1231', 2),
-(11, 'webTest', 'web@test.com', '12345', 1);
+(10, 'Dovydas', 'admin1@dev.com', '1231', 1);
 
 --
 -- Indexes for dumped tables
@@ -223,13 +205,13 @@ ALTER TABLE `itemtypes`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `orderId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `orderId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `shopitems`
 --
 ALTER TABLE `shopitems`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `userroles`

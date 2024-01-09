@@ -99,6 +99,7 @@ select#userId {
 }
 .danger {
   background-color: rgb(252, 75, 75);
+  margin-left: 26px;
 }
 #log {
   background-color: rgb(252, 75, 75);
