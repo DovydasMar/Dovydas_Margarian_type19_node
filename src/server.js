@@ -9,6 +9,7 @@ const loginRouter = require('./routes/loginRoute');
 const shopItemRouter = require('./routes/shopItemsRoute');
 const orderRouter = require('./routes/orderRoutes');
 const roleRouter = require('./routes/rolesRoute');
+const userRouter = require('./routes/userRoutes');
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use('/api/auth', loginRouter);
 app.use('/api', shopItemRouter);
 app.use('/api', orderRouter);
 app.use('/api', roleRouter);
+app.use('/api', userRouter);
 testConnection();
 
 app.get('/', (req, res) => {

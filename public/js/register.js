@@ -3,15 +3,28 @@ import { getDataFetch } from './modules/helper.js';
 
 console.log('register.js file was loaded');
 const regUrl = 'http://localhost:3000/api/auth/register';
-
+const userEmail = localStorage.getItem('email');
+const userRole = +localStorage.getItem('roleId');
 const els = {
   form: document.forms[0],
   username: document.getElementById('userName'),
   email: document.getElementById('email'),
   password: document.getElementById('password'),
-  select: document.getElementById('user'),
+  select: document.getElementById('roleId'),
   errorList: document.getElementById('errors-list'),
+  addItem: document.getElementById('adminAdd'),
+  authentication: document.getElementById('auth'),
+  logout: document.getElementById('log'),
 };
+console.log('els ===', els);
+if (userRole) {
+  window.location.href = '/public/shop.html';
+}
+if (!userRole) {
+  els.authentication.innerHTML = `
+  <li class=""><a href="login.html">Log it</a></li>
+  <li><a href="register.html">Register</a></li>`;
+}
 console.log('els ===', els);
 
 getRoleId('http://localhost:3000/api/user_roles');
@@ -72,8 +85,18 @@ async function getRoleId() {
 function setErrors(arr) {
   els.errorList.innerHTML = '';
   arr.forEach((errObj) => {
+    document.getElementById(errObj.field).classList.add('error');
     const liEl = document.createElement('li');
     liEl.textContent = errObj.error;
     els.errorList.append(liEl);
   });
 }
+if (userRole !== 1) {
+  console.log('userRole ===', userRole);
+  els.addItem.remove();
+}
+els.logout.addEventListener('click', () => {
+  localStorage.removeItem('roleId');
+  localStorage.removeItem('email');
+  window.location.href = '/public/login.html';
+});

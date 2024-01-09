@@ -2,13 +2,26 @@
 console.log('login.js file was loaded');
 const loginUrl = 'http://localhost:3000/api/auth/login';
 const roleUrl = 'http://localhost:3000/api/user_roles';
+const userEmail = localStorage.getItem('email');
+const userRole = +localStorage.getItem('roleId');
 const els = {
   form: document.forms[0],
   email: document.getElementById('email'),
   password: document.getElementById('password'),
   errorList: document.getElementById('errors-list'),
+  addItem: document.getElementById('adminAdd'),
+  logout: document.getElementById('log'),
+  authentication: document.getElementById('auth'),
 };
+if (!userRole) {
+  els.authentication.innerHTML = `
+  <li class=""><a href="login.html">Log it</a></li>
+  <li><a href="register.html">Register</a></li>`;
+}
 console.log('els ===', els);
+if (userRole) {
+  window.location.href = '/public/shop.html';
+}
 
 els.form.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -72,10 +85,20 @@ function loginLocalStorage(email) {
     });
 }
 function setErrors(arr) {
+  els.errorList.innerHTML = '';
   arr.forEach((errObj) => {
-    els.errorList.innerHTML = '';
+    document.getElementById(errObj.field).classList.add('error');
     const liEl = document.createElement('li');
     liEl.textContent = errObj.error;
     els.errorList.append(liEl);
   });
 }
+if (userRole !== 1 || !userRole) {
+  console.log('userRole ===', userRole);
+  els.addItem.remove();
+}
+els.logout.addEventListener('click', () => {
+  localStorage.removeItem('roleId');
+  localStorage.removeItem('email');
+  window.location.href = '/public/login.html';
+});

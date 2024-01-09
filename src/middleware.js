@@ -66,7 +66,7 @@ async function checkItemBody(req, res, next) {
     price: Joi.number().required(),
     description: Joi.string().min(5).required(),
     image: Joi.string(),
-    itemTypeId: Joi.number().min(1).max(1),
+    itemTypeId: Joi.number().min(1).max(4),
   });
   // testuojam ar attitinka objektas musu schema
   try {

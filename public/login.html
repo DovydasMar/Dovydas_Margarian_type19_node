@@ -4,6 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap" rel="stylesheet">
   <title>Document</title>
   <link rel="stylesheet" href="style/reset.css">
   <link rel="stylesheet" href="style/style.css">
@@ -11,6 +14,21 @@
 </head>
 
 <body>
+  <header class="flex between">
+    <a href="shop.html">
+      <h1>eShop'as</h1>
+    </a>
+    <ul id="auth" class="unlisted flex">
+      <li class=""><button id="log">log out</button></li>
+    </ul>
+  </header>
+  <nav>
+    <ul class="unlisted flex center">
+      <li><a href="shop.html">Home Page</a></li>
+      <li id="adminAdd"><a href="add_item.html">Add Item</a></li>
+      <li><a href="orders.html">orders</a></li>
+    </ul>
+  </nav>
   <nav>
   </nav>
   <ul class="errors-list" id="errors-list"></ul>

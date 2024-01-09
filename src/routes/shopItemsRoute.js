@@ -16,7 +16,7 @@ shopItemRouter.post('/shop_items', checkItemBody, async (req, res) => {
     });
   }
   if (shopItemObj.affectedRows === 1) {
-    res.sendStatus(201);
+    res.status(201).json('created');
   }
 });
 
@@ -53,6 +53,20 @@ shopItemRouter.delete('/shop_items/:id', async (req, res) => {
   }
   if (rows.affectedRows === 1) {
     res.json({ msg: `item with id: ${id} was deleted` });
+  }
+});
+shopItemRouter.get('/item_types', async (req, res) => {
+  try {
+    const sql = 'SELECT * FROM itemtypes';
+    const [rows, error] = await dbQueryWithData(sql);
+
+    if (error) {
+      res.status(500).json(error);
+    } else {
+      res.json(rows);
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 

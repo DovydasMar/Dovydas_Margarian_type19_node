@@ -68,6 +68,8 @@ GET  http://localhost:3000/api/orders/user/5
 
 ### /Orders ****
 ### ROLES ****
+### Get item Type id
+GET  http://localhost:3000/api/item_types
 ### Get ROLES
 GET  http://localhost:3000/api/user_roles
 ### Get one role, by id ROLES
@@ -78,4 +80,12 @@ Content-Type: application/json
   "email": "vartotojas2@metal.com" 
 }
 ### /ROLES ****
+### get users
+GET  http://localhost:3000/api/users
+### get users by email
+POST  http://localhost:3000/api/users
+Content-Type: application/json
 
+{
+  "email": "admin@dev.com"
+}
